@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<title>Restoque</title>
+</head>
+<body>
+	
+	<section id="content">
+		
+		<div class="item">
+			<h3 class="apelido"></h3>
+			<p class="comentario"></p>
+			<span class="data"></span>
+			<span class="avatar"></span>
+			<span class="numaplausos"></span>
+			<span class="numrespostas"></span>
+			<span class="filial"></span>
+			<span class="marca"></span>
+			<div class="midias">
+				<span class="url"></span>
+				<span class="urlThumbnail"></span>
+			</div>
+		</div>
+
+	</section>
+
+	<script>
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "https://rest.restoque.com.br/restoquerestfulservice_desenv/api/liveretail/liveretailsocial");
+
+		xhr.addEventListener("load", function() {
+
+		    if (xhr.status == 200) {
+
+		        var response = xhr.responseText;
+
+		        readResponse(response);
+		    } else {
+		        console.log('erro')
+		    }
+		});
+
+		xhr.send();
+
+
+
+		function readResponse(response) {
+			var arr1 = JSON.parse(response);
+
+			var out = "<div class='carousel'>";
+			for (i in arr1) {
+
+				// div item
+				out += "<div class='item'>";
+
+
+				// header
+				out += "<header>";
+				out += "<div class='avatar'><img src='" + arr1[i]['avatar']+ "'></div>";
+
+				// block info
+				out += "<div class='block-info'>";
+				out += "<span class='apelido'><h3>" + arr1[i]['apelido']+ "</h3></span>";
+				out += "<span class='filial'>" + arr1[i]['filial']+ "</span>";
+				out += "<span class='marca'>" + arr1[i]['marca']+ "</span>";
+				out += "<div/>";
+				
+				data = new Date(arr1[i]['data']);
+				out += "<div class='data'>" + data.toLocaleString() + "</div>";
+
+				out += "</header>";
+
+
+				// content
+				out += "<div class='content'>";
+				out += "<div class='comentario'><p>" + arr1[i]['comentario']+ "</p></div>";
+
+				var arrMidia = arr1[i]['midias'];
+
+				for (i in arrMidia) {
+					if(arrMidia[i]['url'] != null){
+						out += "<div class='midias'><img src='" + arrMidia[i]['url']+ "'></div>";
+					}
+				}
+
+				out += "<div/>";
+				
+
+				// footer
+				out += "<footer>";
+				out += "<div class='numaplausos'>" + arr1[i]['numaplausos']+ "</div>";
+				out += "<div class='numrespostas'>" + arr1[i]['numrespostas']+ "</div>";
+				out += "</footer>";
+
+				
+
+				out += "</div>";
+			}
+
+			out += "</div>";
+
+			document.getElementById("content").innerHTML = out;
+		}
+	</script>
+</body>
+</html>
