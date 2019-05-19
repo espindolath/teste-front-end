@@ -28,7 +28,6 @@ var arr1 = JSON.parse(response);
 
 var out = "<div id='carousel'>";
 
-
 for (i in arr1) {
 
 
@@ -39,7 +38,7 @@ for (i in arr1) {
 
 
 	// header
-	out += "<header>";
+	out += "<header class='primary-infos'>";
 	var data = new Date(arr1[i]['data']);
 	var dataLocal = data.toLocaleString().replace(/(:\d{2}$)/, " ");
 	out += "<div class='data'>" + dataLocal + "</div>";
@@ -71,7 +70,7 @@ for (i in arr1) {
 
 	var arrMidia = arr1[i]['midias'];
 
-	if(arrMidia[0]['url'] != null){
+	if(arrMidia[0]['url'] != ''){
 		out += "<img src='" + arrMidia[0]['url']+ "'>";
 	}
 
@@ -81,7 +80,7 @@ for (i in arr1) {
 	out += "</div>";
 
 	// footer
-	out += "<footer>";
+	out += "<footer class='social-box'>";
 	out += "<div class='box-count numrespostas'><i class='icon-font icon-chat'></i><div class='num'><span>" + arr1[i]['numrespostas']+ "</span></div></div>";
 	out += "<div class='box-count numaplausos'><i class='icon-font icon-applause'></i><div class='num'><span>" + arr1[i]['numaplausos']+ "</span></div></div>";
 	
