@@ -1,6 +1,6 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
 
-*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}
 
 html, body{
 	font-size: 20px;
@@ -9,23 +9,31 @@ html, body{
 body{
 	background-color:#2f3b49;
 	font-family: 'Roboto', sans-serif;
-	overflow-y: hidden;
 }
 
 #loader{
 	position: absolute;
 	width: 100%;
 	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 #carousel{
 	width: auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	transition: translateX 0.5s;
 	-webkit-transition: translateX 0.5s;
+	-o-transition: translateX 0.5s;
+	transition: translateX 0.5s;
 }
 
 .item{
@@ -52,8 +60,12 @@ body{
 }
 
 .block-info{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	text-transform: capitalize;
 }
 
@@ -82,7 +94,7 @@ body{
 
 .filial{
 	font-size: 0.75em;
-	margin-bottom: 0.4em;
+	margin-bottom: 0.6em;
 }
 
 .text-filial{
@@ -92,11 +104,16 @@ body{
 .marca{
 	color:#000000;
 	font-size: 0.75em;
+	line-height: 130%;
 }
 
 .wrapp{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 	margin-bottom: 0.75em;
 }
 
@@ -112,6 +129,9 @@ body{
 }
 
 .midias{
+	background:-webkit-gradient(linear,left bottom, left top,from(rgba(255,255,255,0.3)),to(rgba(255,255,255,0.3))),url(../img/default-image.jpg);
+	background:-webkit-linear-gradient(bottom,rgba(255,255,255,0.3),rgba(255,255,255,0.3)),url(../img/default-image.jpg);
+	background:-o-linear-gradient(bottom,rgba(255,255,255,0.3),rgba(255,255,255,0.3)),url(../img/default-image.jpg);
 	background:linear-gradient(0deg,rgba(255,255,255,0.3),rgba(255,255,255,0.3)),url(../img/default-image.jpg);
 	background-size:cover;
 	background-repeat: no-repeat;
@@ -132,16 +152,26 @@ body{
 	color:#7e7e7e;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .num{
 	background-color: #df355a;
 	color:#fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-    align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 	width: 1em;
 	height: 1em;
 	border-radius: 50%;
@@ -183,16 +213,6 @@ body{
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?79610513#fontello') format('svg');
-  }
-}
-*/
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
@@ -205,165 +225,95 @@ body{
   width: 1em;
   margin-right: .2em;
   text-align: center;
-  /* opacity: .8; */
- 
-  /* For safety - reset parent styles, that can break glyph codes*/
+
   font-variant: normal;
   text-transform: none;
  
-  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
+
   margin-left: .2em;
- 
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
- 
-  /* Font smoothing. That was taken from TWBS */
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-applause:before { content: '\e800'; } /* '' */
-.icon-pin:before { content: '\e801'; } /* '' */
-.icon-chat:before { content: '\e802'; } /* '' */
+.icon-applause:before { content: '\e800'; }
+.icon-pin:before { content: '\e801'; }
+.icon-chat:before { content: '\e802'; }
 
 /* Loader */
 .bubblingG {
-text-align: center;
-width:300px;
-height:188px;
+	text-align: center;
+	width:300px;
+	height:188px;
 }
 
 .bubblingG span {
-display: inline-block;
-vertical-align: middle;
-width: 38px;
-height: 38px;
-margin: 94px auto;
-background: #2f3b49;
--moz-border-radius: 188px;
--moz-animation: bubblingG 1s infinite alternate;
--webkit-border-radius: 188px;
--webkit-animation: bubblingG 1s infinite alternate;
--ms-border-radius: 188px;
--ms-animation: bubblingG 1s infinite alternate;
--o-border-radius: 188px;
--o-animation: bubblingG 1s infinite alternate;
-border-radius: 188px;
-animation: bubblingG 1s infinite alternate;
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+	height: 38px;
+	margin: 94px auto;
+	background: #2f3b49;
+	-moz-border-radius: 188px;
+	-moz-animation: bubblingG 1s infinite alternate;
+	-webkit-border-radius: 188px;
+	-webkit-animation: bubblingG 1s infinite alternate;
+	-ms-border-radius: 188px;
+	-ms-animation: bubblingG 1s infinite alternate;
+	-o-border-radius: 188px;
+	-o-animation: bubblingG 1s infinite alternate;
+	border-radius: 188px;
+	animation: bubblingG 1s infinite alternate;
 }
 
 #bubblingG_1 {
--moz-animation-delay: 0s;
--webkit-animation-delay: 0s;
--ms-animation-delay: 0s;
--o-animation-delay: 0s;
-animation-delay: 0s;
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
 }
 
 #bubblingG_2 {
--moz-animation-delay: 0.3s;
--webkit-animation-delay: 0.3s;
--ms-animation-delay: 0.3s;
--o-animation-delay: 0.3s;
-animation-delay: 0.3s;
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
 }
 
 #bubblingG_3 {
--moz-animation-delay: 0.6s;
--webkit-animation-delay: 0.6s;
--ms-animation-delay: 0.6s;
--o-animation-delay: 0.6s;
-animation-delay: 0.6s;
-}
-
-@-moz-keyframes bubblingG {
-0% {
-width: 38px;
-height: 38px;
-background-color:#2f3b49;
--moz-transform: translateY(0);
-}
-
-100% {
-width: 90px;
-height: 90px;
-background-color:rgba(255,255,255,0.5);
--moz-transform: translateY(-79px);
-}
-
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
 }
 
 @-webkit-keyframes bubblingG {
-0% {
-width: 38px;
-height: 38px;
-background-color:#2f3b49;
--webkit-transform: translateY(0);
-}
+	0% {
+		width: 38px;
+		height: 38px;
+		background-color:#2f3b49;
+		-webkit-transform: translateY(0);
+	}
 
-100% {
-width: 90px;
-height: 90px;
-background-color:rgba(255,255,255,0.5);
--webkit-transform: translateY(-79px);
-}
-
-}
-
-@-ms-keyframes bubblingG {
-0% {
-width: 38px;
-height: 38px;
-background-color:#2f3b49;
--ms-transform: translateY(0);
-}
-
-100% {
-width: 90px;
-height: 90px;
-background-color:rgba(255,255,255,0.5);
--ms-transform: translateY(-79px);
-}
-
-}
-
-@-o-keyframes bubblingG {
-0% {
-width: 38px;
-height: 38px;
-background-color:#2f3b49;
--o-transform: translateY(0);
-}
-
-100% {
-width: 90px;
-height: 90px;
-background-color:rgba(255,255,255,0.5);
--o-transform: translateY(-79px);
-}
+	100% {
+		width: 90px;
+		height: 90px;
+		background-color:rgba(255,255,255,0.5);
+		-webkit-transform: translateY(-79px);
+	}
 
 }
 
 @keyframes bubblingG {
-0% {
-width: 38px;
-height: 38px;
-background-color:#2f3b49;
-transform: translateY(0);
-}
+	0% {
+		width: 38px;
+		height: 38px;
+		background-color:#2f3b49;
+		-webkit-transform: translateY(0);
+		        transform: translateY(0);
+	}
 
-100% {
-width: 90px;
-height: 90px;
-background-color:rgba(255,255,255,0.5);
-transform: translateY(-79px);
-}
+	100% {
+		width: 90px;
+		height: 90px;
+		background-color:rgba(255,255,255,0.5);
+		-webkit-transform: translateY(-79px);
+		        transform: translateY(-79px);
+	}
 
 }
