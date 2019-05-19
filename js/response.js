@@ -28,8 +28,8 @@ var arr1 = JSON.parse(response);
 
 var out = "<div id='carousel'>";
 
-for (i in arr1) {
 
+for (i in arr1) {
 
 
 	// div item
@@ -40,8 +40,9 @@ for (i in arr1) {
 
 	// header
 	out += "<header>";
-	data = new Date(arr1[i]['data']);
-	out += "<div class='data'>" + data.toLocaleString() + "</div>";
+	var data = new Date(arr1[i]['data']);
+	var dataLocal = data.toLocaleString().replace(/(:\d{2}$)/, " ");
+	out += "<div class='data'>" + dataLocal + "</div>";
 
 	
 
@@ -105,15 +106,27 @@ run();
 }
 
 function run(){
-	setInterval(function(){
 
-		var carousel = document.getElementById('carousel');
+	var carousel = document.getElementById('carousel');
+	var widthItem = '49.25';
+	var carouselItems = carousel.childElementCount;
+	var carouselReset = (carouselItems - 1) * widthItem;
+
+	var i = 0;
+
+	setInterval(function(){
+		carousel.style.transition = "transform 0.3s ease";	
 		
-		//make the div slides instead of jumping to the destination
-		carousel.style.transition = "transform 0.3s ease"	
-		
-		//will slide 30px to the right, can be negative (-100px), percentage (100%)
-		carousel.style.transform += "translateX(-48.3vw)"
+		carousel.style.transform += "translateX(-"+widthItem+"%)";
+
+		i++;
+
+		if(i >= carouselItems - 1){
+			i = 1;
+			carousel.style.transform += "translateX("+ carouselReset +"%)";
+		}
+
 	 
-	}, 3000)
+	}, 6000)
+	
 }

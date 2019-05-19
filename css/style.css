@@ -9,7 +9,7 @@ html, body{
 body{
 	background-color:#2f3b49;
 	font-family: 'Roboto', sans-serif;
-	/*overflow: hidden;*/
+	overflow-y: hidden;
 }
 
 #loader{
@@ -24,23 +24,17 @@ body{
 #carousel{
 	width: auto;
 	display: flex;
+	transition: translateX 0.5s;
+	-webkit-transition: translateX 0.5s;
 }
 
 .item{
-	min-width: 47.5vw;
+	min-width: 47.75%;
 	background-color: #fff;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	margin: 0.75em 0.375em;
+	margin: 1.5% 0 1.5% 1.5%;
 	position: relative;
-}
-
-.item:first-of-type {
-	margin-left: 0.75em;
-}
-
-.item:last-of-type {
-	margin-right: 0.75em;
 }
 
 .content-item{
