@@ -1,3 +1,5 @@
+var loader = document.getElementById('loader');
+
 var xhr = new XMLHttpRequest();
 
 xhr.open("GET", "https://rest.restoque.com.br/restoquerestfulservice_desenv/api/liveretail/liveretailsocial");
@@ -6,9 +8,12 @@ xhr.addEventListener("load", function() {
 
 if (xhr.status == 200) {
 
+	loader.style.display = 'none';
+
     var response = xhr.responseText;
 
     readResponse(response);
+
 } else {
     console.log('erro')
 }
@@ -21,12 +26,16 @@ xhr.send();
 function readResponse(response) {
 var arr1 = JSON.parse(response);
 
-var out = "<div class='carousel'>";
+var out = "<div id='carousel'>";
 
 for (i in arr1) {
 
+
+
 	// div item
 	out += "<div class='item'>";
+
+	out += "<div class='content-item'>";
 
 
 	// header
@@ -43,7 +52,7 @@ for (i in arr1) {
 	// group
 	out += "<div class='group'>";
 	out += "<span class='apelido'><h3>" + arr1[i]['apelido']+ "</h3></span>";
-	out += "<span class='filial'>" + arr1[i]['filial']+ "</span>";
+	out += "<div class='filial'><i class='icon-font icon-pin'></i><span class='text-filial'>" + arr1[i]['filial']+ "</span></div>";
 	out += "<span class='marca'>" + arr1[i]['marca']+ "</span>";
 	out += "<div/>";
 	out += "<div/>";
@@ -61,20 +70,26 @@ for (i in arr1) {
 
 	var arrMidia = arr1[i]['midias'];
 
-	for (i in arrMidia) {
-		if(arrMidia[i]['url'] != null){
-			out += "<img src='" + arrMidia[i]['url']+ "'>";
-		}
+	if(arrMidia[0]['url'] != null){
+		out += "<img src='" + arrMidia[0]['url']+ "'>";
 	}
 
 	out += "</div>";
 	out += "</div>";
 	
+	out += "</div>";
 
 	// footer
 	out += "<footer>";
-	out += "<div class='numaplausos'>" + arr1[i]['numaplausos']+ "</div>";
-	out += "<div class='numrespostas'>" + arr1[i]['numrespostas']+ "</div>";
+	out += "<div class='box-count numrespostas'><i class='icon-font icon-chat'></i><div class='num'><span>" + arr1[i]['numrespostas']+ "</span></div></div>";
+	out += "<div class='box-count numaplausos'><i class='icon-font icon-applause'></i><div class='num'><span>" + arr1[i]['numaplausos']+ "</span></div></div>";
+	
+	if(arr1[i]['numaplausos'] == 1){
+		out += "<div class='aplaudiram'>"+ arr1[i]['numaplausos'] +" pessoa aplaudiu</div>";
+	}else if(arr1[i]['numaplausos'] >= 2){
+		out += "<div class='aplaudiram'>"+ arr1[i]['numaplausos'] +" pessoas aplaudiram</div>";
+	}
+
 	out += "</footer>";
 
 	
@@ -85,4 +100,20 @@ for (i in arr1) {
 out += "</div>";
 
 document.getElementById("content").innerHTML = out;
+
+run();
+}
+
+function run(){
+	setInterval(function(){
+
+		var carousel = document.getElementById('carousel');
+		
+		//make the div slides instead of jumping to the destination
+		carousel.style.transition = "transform 0.3s ease"	
+		
+		//will slide 30px to the right, can be negative (-100px), percentage (100%)
+		carousel.style.transform += "translateX(-48.3vw)"
+	 
+	}, 3000)
 }
