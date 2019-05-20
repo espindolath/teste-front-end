@@ -66,12 +66,14 @@ for (i in arr1) {
 	out += "<div class='wrapp'>";
 	out += "<div class='comentario'><p>" + arr1[i]['comentario']+ "</p></div>";
 
-	out += "<div class='midias'>";
+	out += "<div class='midias' id='md-"+[i]+"'>";
 
 	var arrMidia = arr1[i]['midias'];
 
 	if(arrMidia[0]['url'] != ''){
 		out += "<img src='" + arrMidia[0]['url']+ "'>";
+	}else{
+		out += "<img src='img/default-image.jpg'>";
 	}
 
 	out += "</div>";
@@ -103,6 +105,8 @@ document.getElementById("content").innerHTML = out;
 
 run();
 }
+
+
 
 function run(){
 
